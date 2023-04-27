@@ -59,7 +59,7 @@
     <td><%= Movie.where({:id=>films}).first.year %></td>
     <% director_id = Movie.where({:id=>films}).first.director_id %>
     <td><%= Director.where({:id=>director_id}).first.name %></td>
-    
+    <td><%= Character.where({:movie_id=>films}).where({:actor_id=>@id}).first.name%>
     <td><a href="/movies/<%= Movie.where({:id=>films}).first.id %>">Show details</a></td>
 
   </tr>
