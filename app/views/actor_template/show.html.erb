@@ -53,15 +53,15 @@
 <h2>Filmography</h2>
 
 <table border="1">
-<% @filmography.all.each do |films| %>
+<% @new_array.each do |films| %>
   <tr>
-    <td><%= films.title %></td>
-    <td><%= films.year%></td>
-    <td><%= films.director_id %></td>
-    <td>
-      <a href="/movies/<%= films.id %>">
-        Show details
-    </td>
+    <td><%= Movie.where({:id=>films}).first.title %></td>
+    <td><%= Movie.where({:id=>films}).first.year %></td>
+    <% director_id = Movie.where({:id=>films}).first.director_id %>
+    <td><%= Director.where({:id=>director_id}).first.name %></td>
+    
+    <td><a href="/movies/<%= Movie.where({:id=>films}).first.id %>">Show details</a></td>
+
   </tr>
   <% end %>
   </table>

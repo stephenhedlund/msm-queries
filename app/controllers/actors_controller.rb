@@ -7,7 +7,11 @@ class ActorsController<ApplicationController
   def actor_details
     @id = params.fetch("an_id")
     @detail = Actor.where({:id=>@id}).first
-    @filmography = Movie.where({:actor_id=>@id})
+    @filmography = Character.where({:actor_id=>@id})
+
+    @new_array = @filmography.all.map do |films|
+      films.movie_id
+    end
     render({:template=> "actor_template/show.html.erb"})
   end
 end
