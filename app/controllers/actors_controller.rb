@@ -5,13 +5,10 @@ class ActorsController<ApplicationController
   end
 
   def actor_details
-    @id = params.fetch("an_id")
-    @detail = Actor.where({:id=>@id}).first
-    @filmography = Character.where({:actor_id=>@id})
+    the_id = params.fetch("an_id")
 
-    @new_array = @filmography.all.map do |films|
-      films.movie_id
-    end
+    matching_actors = Actor.where({ :id => the_id })
+    @the_actor = matching_actors.at(0)
     render({:template=> "actor_template/show.html.erb"})
   end
 end
